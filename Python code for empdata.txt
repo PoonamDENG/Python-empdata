@@ -1,0 +1,33 @@
+# Open and read the empdata.txt file
+with open('empdata.txt', 'r') as file:
+    lines = file.readlines()
+
+
+salary_sum_by_dept = {}
+
+# Process each line in the file
+for line in lines:
+    # Split the line into fields
+    fields = line.strip().split(',')
+    print("I am here 1")
+    if len(fields) != 5:
+        continue
+
+    try:
+        emp_id, emp_name, emp_lastname, dept_name, salary = fields
+        print(fields)
+        salary = int(salary)
+
+        if dept_name in salary_sum_by_dept:
+            salary_sum_by_dept[dept_name] += salary
+        else:
+            salary_sum_by_dept[dept_name] = salary
+
+    finally:
+            print("Im done")
+
+# Print the sum of salary for each dept_name
+for dept_name, total_salary in salary_sum_by_dept.items():
+    print(f"Total salary for {dept_name}: {total_salary}")
+
+
